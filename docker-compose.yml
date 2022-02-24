@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  PostgreSQL:
+    image: postgres
+    environment:
+      - POSTGRES_USER=phatphuckdave
+      - POSTGRES_PASSWORD=phatphuckdave765
+      - POSTGRES_DB=phatphuckdave
+    command: -p 5432
+
+  Server:
+    image: 'phatphuckdave/musictribes'
+    ports:
+      - "8090:8000"
+    environment:
+      - POSTGRES_NAME=phatphuckdave
+      - POSTGRES_USER=phatphuckdave
+      - POSTGRES_PASSWORD=phatphuckdave765
+      - POSTGRES_HOST=PostgreSQL
+      - POSTGRES_PORT=5432
+    depends_on:
+      - PostgreSQL
+
