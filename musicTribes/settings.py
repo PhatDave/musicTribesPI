@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -74,16 +75,29 @@ WSGI_APPLICATION = 'musicTribes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
-        'PORT': os.environ.get('POSTGRES_PORT'),
+try:
+    import environmentConfig
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('POSTGRES_NAME', environmentConfig.POSTGRES_NAME),
+            'USER': os.environ.get('POSTGRES_USER', environmentConfig.POSTGRES_USER),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', environmentConfig.POSTGRES_PASSWORD),
+            'HOST': os.environ.get('POSTGRES_HOST', environmentConfig.POSTGRES_HOST),
+            'PORT': os.environ.get('POSTGRES_PORT', environmentConfig.POSTGRES_PORT),
+        }
     }
-}
+except ModuleNotFoundError:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('POSTGRES_NAME'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('POSTGRES_HOST'),
+            'PORT': os.environ.get('POSTGRES_PORT'),
+        }
+    }
 
 
 # Password validation
