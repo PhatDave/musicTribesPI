@@ -238,6 +238,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 
   Logo može biti i direktan URL na sliku dostupnu online. Bonus bodovi za
   implementaciju uploada logoa Tribea.
+- see [ruski](https://wsofter.com/upload-download-file-to-from-server-in-django-via-ajax/)
 
 - S3-2
   Kao User, kada pristupim HOMEPAGE stranici, mogu vidjeti postojeće Tribeove
@@ -376,7 +377,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 
   Acceptance criteria:
   - Member upisuje poruku u sučelje chatboxa
-  - TRIBE stranica se refresha
+  - TRIBE stranica se refresha (?????????????????? ajax???)
   - Chatbox sadrži napisanu poruku
 
 - S6-3
