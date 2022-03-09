@@ -3,7 +3,7 @@ from django.db.models import *
 
 from tribes.models import *
 
-
+# TODO: create a join and leave method for joining/leaving tribes, also probably kick (in tribe) for removing users
 class User(AbstractUser):
     pass
 

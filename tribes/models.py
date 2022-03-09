@@ -12,7 +12,7 @@ class Tribe(Model):
     # file = request.FILES.get('file')
     # File.objects.create(file=file)
     logo = FileField(upload_to='', null=True)
-    genre = CharField(max_length=32, null=True, default=None)
+    genre = CharField(max_length=32, null=True, default="None")
 
     def getMembers(self):
         relation = UserTribeMember.objects.filter(tribe=self).all()
@@ -27,19 +27,18 @@ class Message(Model):
     content = CharField(max_length=128)
     date = DateTimeField(auto_now_add=True)
 
-
 class Playlist(Model):
     tribe = ForeignKey(Tribe, on_delete=CASCADE)
-    owner = ForeignKey(settings.AUTH_USER_MODEL, on_delete=SET_DEFAULT, default="None", null=True)
+    user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     name = CharField(max_length=128, default="")
-    description = CharField(max_length=256, null=True, default=None)
+    description = CharField(max_length=256, null=True, default="None")
 
 class Song(Model):
     playlist = ForeignKey(Playlist, on_delete=CASCADE)
     link = URLField(max_length=256)
     title = CharField(max_length=128)
-    artist = CharField(max_length=32)
-    duration = IntegerField()
+    artist = CharField(max_length=32, null=True)
+    duration = IntegerField(null=True)
 
 class UserLike(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)

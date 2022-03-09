@@ -70,7 +70,7 @@ playlist.addColumns([
     Column("id", SerialGenerator(1), True),
     Column("name", FakeUsernameGenerator()),
     Column("description", FakeUsernameGenerator()),
-    Column("owner_id", SetGenerator(db.getPkSet(user), True)),
+    Column("user_id", SetGenerator(db.getPkSet(user), True)),
     Column("tribe_id", SetGenerator(db.getPkSet(tribe), True)),
 ])
 
