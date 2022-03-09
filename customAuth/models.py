@@ -10,4 +10,4 @@ class User(AbstractUser):
 
 class UserTribeMember(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
-    tribe = ForeignKey(Tribe, on_delete=CASCADE)
+    tribe = ForeignKey("tribes.Tribe", on_delete=CASCADE)
