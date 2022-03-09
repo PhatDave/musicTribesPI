@@ -8,14 +8,7 @@ def index(request):
     context = {}
     html = 'tribes/index.html'
 
-    users = User.objects.all()
-    for user in users:
-        user.delete()
-    tribes = Tribe.objects.all()
-    for tribe in tribes:
-        tribe.delete()
-
-    user = User.objects.create(username="Dave")
-    tribe = Tribe.objects.create(chieftain=user)
+    tribe = Tribe.objects.all()[0]
+    print(tribe.getMembers())
 
     return render(request, html, context)

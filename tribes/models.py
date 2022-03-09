@@ -7,12 +7,19 @@ from customauth.models import UserTribeMember
 class Tribe(Model):
     chieftain = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     name = CharField(max_length=128, default="")
-    # TODO: use server hosted media for this
-    # logo = URLField
+    # TODO: figure out how to upload files
+    # TODO: see https://wsofter.com/upload-download-file-to-from-server-in-django-via-ajax/
+    # file = request.FILES.get('file')
+    # File.objects.create(file=file)
+    logo = FileField(upload_to='', null=True)
     genre = CharField(max_length=32, null=True, default=None)
 
     def getMembers(self):
-        return UserTribeMember.objects.filter(tribe=self).all()
+        relation = UserTribeMember.objects.filter(tribe=self).all()
+        users = []
+        for i in relation:
+            users.append(i.user)
+        return users
 
 class Message(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
