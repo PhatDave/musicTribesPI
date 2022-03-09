@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from customAuth.models import User
+from customauth.models import User
 from tribes.models import *
 
 

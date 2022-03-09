@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db.models import *
 
-from customAuth.models import UserTribeMember
+from customauth.models import UserTribeMember
 
 
 class Tribe(Model):
