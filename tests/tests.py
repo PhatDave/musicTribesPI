@@ -51,6 +51,8 @@ class TribeTests(TestCase):
         Message.objects.create(user=ivan, tribe=mirkoTribe, content="wowiee")
         Message.objects.create(user=cedo, tribe=mirkoTribe, content="make tribe great again")
 
-    def test_first_yes(self):
-        firstUser = User.objects.get(id=1)
-        self.assertEqual(firstUser.username, "mirko")
+    def test_tribeGetMembers_returnsCorrectly(self):
+        tribe = Tribe.objects.all()[0]
+        ivan = User.objects.get(username="ivan")
+        cedo = User.objects.get(username="cedo")
+        self.assertEqual(tribe.getMembers(), [ivan, cedo])
