@@ -118,6 +118,6 @@ userLike.addColumns([
 ])
 
 try:
-    db.insertRows(userLike, 5000)
+    db.insertRows(userLike, 50)
 except Exception as e:
     print(e)
