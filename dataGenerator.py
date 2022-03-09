@@ -53,6 +53,18 @@ try:
 except Exception as e:
     print(e)
 
+userTribeMember = Table("customauth_usertribemember")
+userTribeMember.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("user_id", SetGenerator(db.getPkSet(user), False)),
+    Column("tribe_id", SetGenerator(db.getPkSet(tribe), False)),
+])
+
+try:
+    db.insertRows(userTribeMember, 5000)
+except Exception as e:
+    print(e)
+
 playlist = Table("tribes_playlist")
 playlist.addColumns([
     Column("id", SerialGenerator(1), True),
