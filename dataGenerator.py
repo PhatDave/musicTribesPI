@@ -35,8 +35,10 @@ user.addColumns([
     Column("date_joined", FakeCurrentMonthDateTimeGenerator()),
 ])
 
-db.wipeTable(user)
-db.insertRows(user, 50)
+try:
+    db.insertRows(user, 50)
+except Exception as e:
+    print(e)
 
 tribe = Table("tribes_tribe")
 tribe.addColumns([
@@ -46,5 +48,76 @@ tribe.addColumns([
     Column("chieftain_id", SetGenerator(db.getPkSet(user), True)),
 ])
 
-db.wipeTable(tribe)
-db.insertRows(tribe, 50)
+try:
+    db.insertRows(tribe, 50)
+except Exception as e:
+    print(e)
+
+playlist = Table("tribes_playlist")
+playlist.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("name", FakeUsernameGenerator()),
+    Column("description", FakeUsernameGenerator()),
+    Column("owner_id", SetGenerator(db.getPkSet(user), True)),
+    Column("tribe_id", SetGenerator(db.getPkSet(tribe), True)),
+])
+
+try:
+    db.insertRows(playlist, 50)
+except Exception as e:
+    print(e)
+
+song = Table("tribes_song")
+song.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("title", FakeUsernameGenerator()),
+    Column("link", FakeUrlGenerator()),
+    Column("artist", FakeUsernameGenerator()),
+    Column("duration", RandomIntegerGenerator(0, 1e5)),
+    Column("playlist_id", SetGenerator(db.getPkSet(playlist), True)),
+])
+
+try:
+    db.insertRows(song, 50)
+except Exception as e:
+    print(e)
+
+tribeMessage = Table("tribes_message")
+tribeMessage.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("content", RandomStringGenerator(128)),
+    Column("date", FakeCurrentMonthDateTimeGenerator()),
+    Column("tribe_id", SetGenerator(db.getPkSet(tribe), False)),
+    Column("user_id", SetGenerator(db.getPkSet(user), False)),
+])
+
+try:
+    db.insertRows(tribeMessage, 5000)
+except Exception as e:
+    print(e)
+
+songComment = Table("tribes_usercomment")
+songComment.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("content", RandomStringGenerator(512)),
+    Column("date", FakeCurrentMonthDateTimeGenerator()),
+    Column("song_id", SetGenerator(db.getPkSet(song), False)),
+    Column("user_id", SetGenerator(db.getPkSet(user), False)),
+])
+
+try:
+    db.insertRows(songComment, 5000)
+except Exception as e:
+    print(e)
+
+userLike = Table("tribes_userlike")
+userLike.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("song_id", SetGenerator(db.getPkSet(song), True)),
+    Column("user_id", SetGenerator(db.getPkSet(user), True)),
+])
+
+try:
+    db.insertRows(userLike, 5000)
+except Exception as e:
+    print(e)
