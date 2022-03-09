@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db.models import *
 
+from customAuth.models import UserTribeMember
+
 
 class Tribe(Model):
     chieftain = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
@@ -8,6 +10,9 @@ class Tribe(Model):
     # TODO: use server hosted media for this
     # logo = URLField
     genre = CharField(max_length=32, null=True, default=None)
+
+    def getMembers(self):
+        return UserTribeMember.objects.filter(tribe=self).all()
 
 class Message(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
