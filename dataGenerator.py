@@ -22,12 +22,11 @@ except ModuleNotFoundError:
 
 
 user = Table("customAuth_user")
-db.setTable(user)
-
 user.addColumns([
     Column("id", SerialGenerator(1), True),
     Column("username", FakeUsernameGenerator()),
     Column("password", RandomStringGenerator(16, True, True, True)),
+    Column("email", FakeEmailGenerator()),
     Column("first_name", FakeFirstNameGenerator()),
     Column("last_name", FakeLastNameGenerator()),
     Column("is_superuser", ConstantGenerator(False)),
@@ -36,4 +35,16 @@ user.addColumns([
     Column("date_joined", FakeCurrentMonthDateTimeGenerator()),
 ])
 
-db.insertRows(user, 200)
+db.wipeTable(user)
+db.insertRows(user, 50)
+
+tribe = Table("tribes_tribe")
+tribe.addColumns([
+    Column("id", SerialGenerator(1), True),
+    Column("name", FakeUsernameGenerator()),
+    Column("genre", FakeUsernameGenerator()),
+    Column("chieftain_id", SetGenerator(db.getPkSet(user), True)),
+])
+
+db.wipeTable(tribe)
+db.insertRows(tribe, 50)
