@@ -6,7 +6,7 @@ from customauth.models import UserTribeMember
 
 class Tribe(Model):
     chieftain = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
-    name = CharField(max_length=128, default="")
+    name = CharField(max_length=128, default="", unique=True)
     # TODO: figure out how to upload files
     # TODO: see https://wsofter.com/upload-download-file-to-from-server-in-django-via-ajax/
     # file = request.FILES.get('file')
@@ -18,6 +18,9 @@ class Tribe(Model):
     class UserIsAlreadyAMemberException(Exception):
         def __init__(self, user, tribe):
             super().__init__(f'{user} is already a member of {tribe} and can not join again.')
+    class TribeAlreadyExistsException(Exception):
+        def __init__(self, name):
+            super().__init__(f'A tribe with the name {name} already exists')
 
     def getMembers(self):
         relation = UserTribeMember.objects.filter(tribe=self).all()

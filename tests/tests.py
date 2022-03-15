@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from customauth.models import User
 from tribes.models import *
+from tribes.utils import *
 
 
 class TribeTests(TestCase):
@@ -11,8 +12,8 @@ class TribeTests(TestCase):
         ivan = User.objects.create(username="ivan")
         cedo = User.objects.create(username="cedo")
 
-        mirkoTribe = Tribe.objects.create(name="mirkovTribe", chieftain=mirko)
-        boskoTribe = Tribe.objects.create(name="boskovTribe", chieftain=bosko)
+        mirkoTribe = createTribe(mirko, "mirkovTribe")
+        boskoTribe = createTribe(bosko, "boskovTribe")
 
         UserTribeMember.objects.create(user=mirko, tribe=boskoTribe)
         UserTribeMember.objects.create(user=ivan, tribe=boskoTribe)
@@ -53,9 +54,13 @@ class TribeTests(TestCase):
 
     def test_tribeGetMembers_returnsCorrectly(self):
         tribe = Tribe.objects.all()[0]
+        mirko = User.objects.get(username="mirko")
         ivan = User.objects.get(username="ivan")
         cedo = User.objects.get(username="cedo")
-        self.assertEqual(tribe.getMembers(), [ivan, cedo])
+        self.assertEqual(tribe.getMembers(), [mirko, ivan, cedo])
+    def test_tryCreateTribeWithSameNameAsExistingTribe_throwsException(self):
+        mirko = User.objects.get(username="mirko")
+        self.assertRaises(Tribe.TribeAlreadyExistsException, createTribe, user=mirko, name="mirkovTribe")
 
     def test_tryJoinTribeOnValidUser(self):
         tribe = Tribe.objects.all()[0]
