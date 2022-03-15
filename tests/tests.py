@@ -56,3 +56,12 @@ class TribeTests(TestCase):
         ivan = User.objects.get(username="ivan")
         cedo = User.objects.get(username="cedo")
         self.assertEqual(tribe.getMembers(), [ivan, cedo])
+
+    def test_tryJoinTribeOnValidUser(self):
+        tribe = Tribe.objects.all()[0]
+        bosko = User.objects.get(username="bosko")
+        bosko.joinTribe(tribe)
+    def test_tryJoinTribeUserIsAlreadyIn_throwsException(self):
+        tribe = Tribe.objects.all()[0]
+        ivan = User.objects.get(username="ivan")
+        self.assertRaises(Tribe.UserIsAlreadyAMemberException, ivan.joinTribe, tribe=tribe)

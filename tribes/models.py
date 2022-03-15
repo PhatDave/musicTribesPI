@@ -13,6 +13,11 @@ class Tribe(Model):
     # File.objects.create(file=file)
     logo = FileField(upload_to='', null=True)
     genre = CharField(max_length=32, null=True, default="None")
+    # TODO: test chieftain is member and can not leave tribe
+
+    class UserIsAlreadyAMemberException(Exception):
+        def __init__(self, user, tribe):
+            super().__init__(f'{user} is already a member of {tribe} and can not join again.')
 
     def getMembers(self):
         relation = UserTribeMember.objects.filter(tribe=self).all()
@@ -20,6 +25,15 @@ class Tribe(Model):
         for i in relation:
             users.append(i.user)
         return users
+
+    def addMember(self, user):
+        membership = list(UserTribeMember.objects.filter(tribe=self, user=user).all())
+        if len(membership) > 0:
+            raise self.UserIsAlreadyAMemberException(user, self)
+        UserTribeMember.objects.create(tribe=self, user=user)
+
+    def __str__(self):
+        return self.name
 
 class Message(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)

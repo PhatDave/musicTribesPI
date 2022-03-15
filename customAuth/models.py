@@ -5,7 +5,8 @@ from tribes.models import *
 
 # TODO: create a join and leave method for joining/leaving tribes, also probably kick (in tribe) for removing users
 class User(AbstractUser):
-    pass
+    def joinTribe(self, tribe):
+        tribe.addMember(self)
 
 class UserTribeMember(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
