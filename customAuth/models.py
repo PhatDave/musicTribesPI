@@ -18,7 +18,11 @@ class User(AbstractUser):
             raise Tribe.UserIsNotInTribeCannotLeaveException(self, tribe)
 
     def getUserTribes(self):
-        pass
+        memberships = list(UserTribeMember.objects.filter(user=self).all())
+        tribes = []
+        for membership in memberships:
+            tribes.append(membership.tribe)
+        return tribes
 
     def isInTribe(self, tribe):
         membership = UserTribeMember.objects.filter(user=self, tribe=tribe)

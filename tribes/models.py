@@ -13,7 +13,6 @@ class Tribe(Model):
     # File.objects.create(file=file)
     logo = FileField(upload_to='', null=True)
     genre = CharField(max_length=32, null=True, default="None")
-    # TODO: test chieftain is member and can not leave tribe
 
     class ChieftainCannotLeavePleaseDisbandException(Exception):
         def __init__(self, user, tribe):

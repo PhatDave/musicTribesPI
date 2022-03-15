@@ -88,3 +88,10 @@ class TribeTests(TestCase):
         ivan.leaveTribe(tribe)
         self.assertEqual(tribe.getMembers(), [mirko, cedo])
 
+    def test_tribeGetMembers_returnsCorrectly(self):
+        ivan = User.objects.get(username="ivan")
+        mirkoTribe = Tribe.objects.get(name="mirkovTribe")
+        boskoTribe = Tribe.objects.get(name="boskovTribe")
+
+        self.assertEqual(ivan.getUserTribes(), [boskoTribe, mirkoTribe])
+
