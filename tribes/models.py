@@ -15,6 +15,12 @@ class Tribe(Model):
     genre = CharField(max_length=32, null=True, default="None")
     # TODO: test chieftain is member and can not leave tribe
 
+    class ChieftainCannotLeavePleaseDisbandException(Exception):
+        def __init__(self, user, tribe):
+            super().__init__(f'{user} is the chieftain of {tribe} and can not leave {tribe}, please disband tribe instead.')
+    class UserIsNotInTribeCannotLeaveException(Exception):
+        def __init__(self, user, tribe):
+            super().__init__(f'{user} is not a member of {tribe} and can not leave {tribe}.')
     class UserIsAlreadyAMemberException(Exception):
         def __init__(self, user, tribe):
             super().__init__(f'{user} is already a member of {tribe} and can not join again.')

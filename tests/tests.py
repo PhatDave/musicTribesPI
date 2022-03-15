@@ -70,3 +70,21 @@ class TribeTests(TestCase):
         tribe = Tribe.objects.all()[0]
         ivan = User.objects.get(username="ivan")
         self.assertRaises(Tribe.UserIsAlreadyAMemberException, ivan.joinTribe, tribe=tribe)
+
+    def test_chieftainTryLeaveTribe(self):
+        tribe = Tribe.objects.all()[0]
+        mirko = User.objects.get(username="mirko")
+        self.assertRaises(Tribe.ChieftainCannotLeavePleaseDisbandException, mirko.leaveTribe, tribe=tribe)
+    def test_userIsMemberOfTribe_whenIsMember(self):
+        tribe = Tribe.objects.all()[0]
+        ivan = User.objects.get(username="ivan")
+        self.assertTrue(ivan.isInTribe(tribe))
+    def test_userLeaveTribe_worksCorrectly(self):
+        tribe = Tribe.objects.all()[0]
+        ivan = User.objects.get(username="ivan")
+        mirko = User.objects.get(username="mirko")
+        cedo = User.objects.get(username="cedo")
+
+        ivan.leaveTribe(tribe)
+        self.assertEqual(tribe.getMembers(), [mirko, cedo])
+

@@ -1,21 +1,30 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db.models import *
-
-from tribes.models import *
 
 class User(AbstractUser):
     def joinTribe(self, tribe):
         tribe.addMember(self)
 
-    # TODO: implement and test
     def leaveTribe(self, tribe):
-        pass
+        # TODO: causes circular import because of UserTribeMember; I think this is fine
+        from tribes.models import Tribe
+
+        if self.isInTribe(tribe):
+            if tribe.chieftain == self:
+                raise Tribe.ChieftainCannotLeavePleaseDisbandException(self, tribe)
+            UserTribeMember.objects.filter(user=self, tribe=tribe).get().delete()
+        else:
+            raise Tribe.UserIsNotInTribeCannotLeaveException(self, tribe)
 
     def getUserTribes(self):
         pass
 
     def isInTribe(self, tribe):
-        pass
+        membership = UserTribeMember.objects.filter(user=self, tribe=tribe)
+        if len(membership) > 0:
+            return True
+        return False
 
 class UserTribeMember(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
