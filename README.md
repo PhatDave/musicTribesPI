@@ -2,7 +2,7 @@
 
 ## Opis aplikacije
 
-[x] test goal
+- [x] test goal
 
 Music tribes je aplikacija/društvena mreža koja omogućuje kolaborativno
 dijeljenje playlista. Aplikacija omogućuje registraciju korisnika i kreiranje
