@@ -5,7 +5,7 @@
 Music tribes je aplikacija/društvena mreža koja omogućuje kolaborativno
 dijeljenje playlista. Aplikacija omogućuje registraciju korisnika i kreiranje
 plemena (Tribe). Unutar Tribea moguće je kreirati playliste koje će sadržavati
-pjesme. 
+pjesme.
 
 Unutar svake playliste moguće je dodavati pjesme, komentirati ih i lajkati.
 Pjesme se dodaju kao linkovi na youtube. Pjesme je moguće sortirati po broju
@@ -19,7 +19,7 @@ kreira Tribe ima status *Poglavica* ili *Chieftain* i ima mogućnost uređivanja
 sadržaja unutar tribea (efektivno je admin/moderator Tribea). Također, jedino
 *Chieftain* ima mogućnost kreiranja playliste. Ostali korisnici
 koji se priključe u Tribe mogu: dodavati pjesme, komentirati na pjesme i
-lajkati. 
+lajkati.
 
 Na početnoj stranici aplikacije vidi se popis Tribeova. Svaki registrirani
 korisnik može se priključiti bilo kojem Tribeu. Chieftain ima mogućnost
@@ -46,7 +46,7 @@ prikazuje pored njegovih komentara.
   Django Admin sučelja, te je unutar admin sučelja moguće i brisanje korisnika
   i Tribeova.  Sve ostale moderacijske aktivnosti (brisanje komentara, brisanje pjesama,
   brisanje poruka iz Tribe chatboxa) potrebno je omogućiti direktno u sučelju
-  aplikacije. 
+  aplikacije.
 - Chieftan ima mogućnost brisanja svega u svom Tribeu, ali ne može obrisati
   korisnika, može ga samo izbaciti iz Tribea. U ostalim Tribeovima u kojima je
   samo član, nema moderacijske sposobnosti.
@@ -81,7 +81,7 @@ privilegije unutar Django Admin sučelja. Privilegije ostalih rola ovise o tome
 koji dio aplikacije pregledavaju. Navedene persone nisu odvojeni modeli niti
 odvojeni zapisi u bazi, već se isključivo promatraju kao semantički objekti iz
 perspektive posjetitelja aplikacija. Jedan korisnički račun može imati više
-Persona ovisno o tome na kojem dijelu aplikacije se korisnik nalazi. 
+Persona ovisno o tome na kojem dijelu aplikacije se korisnik nalazi.
 
 Primjer: Kada govorimo o roli Chieftain ona podrazumjeva korisnički račun koji
 pregledava svoj Tribe koji je kreirao. Kada Chieftain jednog Tribea
@@ -96,7 +96,7 @@ potrebne za implementaciju određenih funkcionalnosti, ali nisu ovdje
 eksplicitno navedene jer se podrazumijevaju. Primjer: iako stranica za upisivanje
 emaila i passworda za registraciju novog korisnika nije navedena, podrazumjeva
 se njeno postojanje kako bi se moglo omogućiti registriranje novog korisnika.
-Isto vrijedi i za login stranicu i ostale slične stranice. 
+Isto vrijedi i za login stranicu i ostale slične stranice.
 
 Naravno, ukoliko je kroz dizajn predviđena implementacija određene funkcionalnosti
 bez zasebne stranice, nije ju potrebno implementirati. Primjer: ukoliko je u dizajnu
@@ -140,11 +140,11 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 
 ## Epic 1: Admini mogu uređivati aplikaciju direktno iz ADMIN_DASH sučelja
 
-- [ ] S1-1 
+- [ ] S1-1
   Kao SuperAdmin, kada pristupim ADMIN_DASH stranici, trebam moći
   uređivati korisnike i postaviti im Admin privilegije
 
-  Acceptance criteria: 
+  Acceptance criteria:
   - SuperAdmin se može ulogirati u ADMIN_DASH sa danim korisničkim podacima
   - SuperAdmin može kreirati novog Admina i postaviti mu Admin ovlasti
   - SuperAdmin može obrisati svakog korisnika
@@ -157,7 +157,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Kao Admin, kada pristupim ADMIN_DASH stranici, trebam moći
   uređivati korisnike i postaviti im Admin privilegije
 
-  Acceptance criteria: 
+  Acceptance criteria:
   - Admin se može ulogirati u ADMIN_DASH sa danim korisničkim podacima
   - Admin može kreirati novog Admina i postaviti mu Admin ovlasti
   - Admin ne može obrisati ili uređivati SuperAdmina
@@ -189,11 +189,11 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Need: username, email, password
 
   Acceptance criteria:
-  - Anon vidi link na funkcionalnost registracije 
-  - Anon može kreirati novi korisnički račun 
+  - Anon vidi link na funkcionalnost registracije
+  - Anon može kreirati novi korisnički račun
   - Anon je redirectan nazad na HOMEPAGE nakon kreiranja računa
 
-- [ ] S2-2 
+- [ ] S2-2
   Kao Anon, kada pristupim HOMEPAGE stranici, mogu se prijaviti u aplikaciju,
   nakon čega me sustav redirect nazad na HOMEPAGE
 
@@ -243,11 +243,11 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 - [ ] S3-2
   Kao User, kada pristupim HOMEPAGE stranici, mogu vidjeti postojeće Tribeove
 
-  Acceptance criteria: 
+  Acceptance criteria:
   - User vidi sve postojeće Tribeove
   - Prikazan je i logo i ime Tribea
 
-- [ ] S3-3 
+- [ ] S3-3
   Kao User, kada pristupim HOMEPAGE stranici, na popisu Tribeova vidim Tribeove
   razdvojene po tome jesam li Chieftain Tribea, jesam li Member, te ukoliko ne
   pripadam tom Tribeu
@@ -273,8 +273,8 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Kao User, kada pristupim HOMEPAGE stranici, mogu pristupiti TRIBE stranici za
   bilo koji Tribe
 
-  Acceptance criteria: 
-  - Klik na link za Tribe vodi usera na TRIBE stranicu za taj Tribe 
+  Acceptance criteria:
+  - Klik na link za Tribe vodi usera na TRIBE stranicu za taj Tribe
 
 
 
@@ -293,8 +293,8 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
     brisanje
   - 80% posjetitelja stranice mora bez prethodne obuke moći prepoznati koja
     tipka služi za brisanje koje playliste (tipka mora biti intuitivno
-    smještena) 
-  
+    smještena)
+ 
 - [ ] S4-2
   Kao Chieftain, kada pristupim TRIBE stranici, mogu uređivati
   naziv i opis svake playliste
@@ -312,7 +312,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Acceptance criteria:
   - Vidljiv je popis svih Membera određenog Tribea
 
-- [ ] S4-4 
+- [ ] S4-4
   Kao Chieftain, kada pristupim TRIBE stranici, mogu izbaciti
   Membera iz Tribea
 
@@ -324,7 +324,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 
 ## Epic 5: Member na TRIBE stranici
 
-- [ ] S5-1 
+- [ ] S5-1
   Kao member, kada pristupim TRIBE stranici, vidim sadržaje unutar TRIBE
   stranice
 
@@ -334,7 +334,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   - Member vidi sebe u popisu članova
 
 
-- [ ] S5-2 
+- [ ] S5-2
   Kao member, kada pristupim TRIBE stranici, vidim da sam Member tog Tribea
 
   Acceptance criteria:
@@ -353,7 +353,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Kao User, kada pristupim TRIBE stranici Tribea čiji nisam član ili koji sam
   napustio, mogu se ponovno učlaniti u taj Tribe
 
-  Acceptance criteria: 
+  Acceptance criteria:
   - User vidi tipku za učlanjivanje u Tribe i klikće na nju
   - User je sada Member
   - Nakon klika, Memberu se prikazuje TRIBE stranica i njegov username se
@@ -363,7 +363,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 
 ## Epic 6: Tribe Chatbox
 
-- [ ] S6-1 
+- [ ] S6-1
   Kao Member, kada pristupim TRIBE stranici, vidim popis poruka u Chatboxu
   Tribea koje su pisali Memberi Tribea
 
@@ -420,8 +420,8 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   - Direktan request na delete URL za poruku neće obrisati poruku iz baze
 
 - [ ] S6-7
-  Kao Chieftain, kada pristupim TRIBE stranici, 
-  za sve moje poruke u Chatboxu vidljivo je da ih je napisao Chieftain Tribea. 
+  Kao Chieftain, kada pristupim TRIBE stranici,
+  za sve moje poruke u Chatboxu vidljivo je da ih je napisao Chieftain Tribea.
 
   Acceptance criteria:
   - Poruke koje je u Chatbox Tribea napisao Chieftain Tribea vizualno su
@@ -457,7 +457,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   playlistu
 
   Need: Track artist, Track title, youtube url, duration
-  
+ 
   Acceptance criteria:
   - Vidljiva je tipka za dodavanje nove pjesme
   - Klik na tipku otvara sučelje za dodavanje
@@ -468,7 +468,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Kao Anyone, kada pristupim PLAYLIST stranici, vidim podatke o pjesmama u
   playlisti i mogu poslušati bilo koju pjesmu u popisu pjesama
 
-  Acceptance criteria: 
+  Acceptance criteria:
   - Anyone vidi podatke u formatu: "track_artist - track_title (duration)" za
     svaku pjesmu u popisu pjesama
   - url nije vidljiv u popisu pjesama
@@ -491,7 +491,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
     pjesmu, čak niti preko direktnog poziva na like URL za pjesmu
   - Tekst LIKE/UNLIKE tipki sadrži i broj lajkova na tu pjesmu
 
-- [ ] S7-6 
+- [ ] S7-6
   Kao Member, kada pristupim PLAYLIST stranici, mogu vidjeti koliko pojedina
   pjesma ima komentara te mogu čitati te komentare
 
@@ -502,7 +502,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   - Klik na indikator prikazuje popis komentara za tu pjesmu
   - Svaki komentar sadrži logo Membera koji ga je napisao, tekst komentara i
     timestamp
-  - Member vidi kontrolu za skrivanje popisa komentara za tu pjesmu. 
+  - Member vidi kontrolu za skrivanje popisa komentara za tu pjesmu.
   - Klik na kontrolu za skrivanje će sakriti popis komentara za pjesmu
   - Popis komentara se prikazuje/skriva i kada nema komentara, ali sadrži tekst
     "Još nitko nije komentirao. Budi prvi!"
@@ -510,20 +510,20 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   Engineering notes:
   - Popis komentara se prikazuje i skriva bez refresha PLAYLIST stranice
   - Preporuka je koristiti JS i CSS za prikazivanje/skrivanje div elementa koji
-    sadrži komentare. 
+    sadrži komentare.
   - Moguće je implementirati i modalni prozor (pop-up) koji sadrži popis
     komentara
 
-  
+ 
 
 - [ ] S7-7
-  Kao Member, kada pristupim PLAYLIST stranici, mogu komentirati svaku pjesmu u 
+  Kao Member, kada pristupim PLAYLIST stranici, mogu komentirati svaku pjesmu u
   popisu pjesama
 
   Need: tekst komentara
 
   Acceptance criteria:
-  - Klik na indikator za popis komentara iz S7-6 prikazuje popis komentara 
+  - Klik na indikator za popis komentara iz S7-6 prikazuje popis komentara
   - Popis komentara sadrži i formu za unos novog komentara i tipku "Ostavi
     komentar"
   - Klikom na tipku sprema se komentar u bazu i refresha se PLAYLIST stranica
@@ -532,7 +532,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
     komentar
 
 
-- [ ] S7-8 
+- [ ] S7-8
   Kao User ili Anon, kada pristupim PLAYLIST stranici, mogu vidjeti komentare
   na pjesme ali ne mogu komentirati
 
@@ -542,7 +542,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   - User i Anon ne mogu ostaviti komentar čak ni pozivom direktnog URL-a za
     komentiranje
 
-- [ ] S7-9 
+- [ ] S7-9
   Kao User ili Anon, kada pristupim PLAYLIST stranici, mogu vidjeti broj
   lajkova za pjesmu, ali ne mogu lajkati
 
@@ -563,10 +563,10 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   - Persona vidi tipku za brisanje pjesme pored svake pjesme u popisu
   - Klik na tipku briše pjesmu u bazi
   - Pjesma se više ne pojavljuje u popisu pjesama
-  
+ 
 - [ ] S8-2
   Kao Member, kada pristupim PLAYLIST stranici, mogu obrisati iz playliste
-  pjesmu koju sam ja dodao, ali ne mogu obrisati pjesme koje su dodali drugi 
+  pjesmu koju sam ja dodao, ali ne mogu obrisati pjesme koje su dodali drugi
   Memberi
 
   Acceptance criteria:
@@ -575,7 +575,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
   - Klik na tipku briše pjesmu iz baze i ne pojavljuje se u playlisti
   - Ne može obrisati pjesme koje nije on dodao, čak niti preko direktnog URL-a
     za brisanje
-  
+ 
 - [ ] S8-3
   Kao Admin ili Chieftain, kada pristupim PLAYLIST stranici, mogu obrisati
   svaki komentar
