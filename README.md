@@ -2,7 +2,7 @@
 
 ## Opis aplikacije
 
-- [ ] test goal
+- [x] test goal
 - [ ] test issue
 
 Music tribes je aplikacija/društvena mreža koja omogućuje kolaborativno
