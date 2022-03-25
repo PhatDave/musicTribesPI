@@ -103,15 +103,15 @@ bez zasebne stranice, nije ju potrebno implementirati. Primjer: ukoliko je u diz
 zamišljeno logiranje/prijavljivanje korisnika direktno sa HOME stranice, nije
 potrebno implementirati dodatnu LOGIN stranicu.
 
-- HOMEPAGE stranica - početna stranica projekta. Sadrži popis Tribeova, sučelje
+- [ ] HOMEPAGE stranica - početna stranica projekta. Sadrži popis Tribeova, sučelje
   za otvaranje novog Tribea i slično.
-- TRIBE stranica - Stranica određenog Tribea. Sadrži popis playlista, popis
+- [ ] TRIBE stranica - Stranica određenog Tribea. Sadrži popis playlista, popis
   Tribe membera i chatbox.
-- PLAYLIST stranica - Stranica određenog Playlista. Sadrži popis pjesama i
+- [ ] PLAYLIST stranica - Stranica određenog Playlista. Sadrži popis pjesama i
   kontrole za like, komentiranje i sortiranje.
-- EDIT_USER stranica - Stranica u kojoj pojedini korisnik uređuje svoje
+- [ ] EDIT_USER stranica - Stranica u kojoj pojedini korisnik uređuje svoje
   korisničke podatke.
-- ADMIN_DASH stranica - Stranica Django Admin dashboarda. Sadrži sve što je
+- [ ] ADMIN_DASH stranica - Stranica Django Admin dashboarda. Sadrži sve što je
   potrebno kako bi Admin mogao kreirati/brisati/uređivati korisničke račune te
   brisati/uređivati Tribeove.
 
