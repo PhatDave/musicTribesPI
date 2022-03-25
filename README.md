@@ -228,7 +228,7 @@ potrebu za postojanje Tribea kao preduvjet ispunjenja storyja.
 
 ## Epic 3: User vidi Tribeove i može kreirati novi Tribe
 
-- [ ] S3.1
+- [ ] S3-1
   Kao User, kada pristupim HOMEPAGE stranici, mogu kreirati novi Tribe
 
   Need: Tribe name, Tribe logo, genre
