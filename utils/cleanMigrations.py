@@ -1,9 +1,10 @@
 import os
 
 for folder in os.listdir(".."):
-    if os.path.isdir(folder):
-        for innerFolder in os.listdir(folder):
+    if os.path.isdir(f'..\\{folder}'):
+        for innerFolder in os.listdir(f'..\\{folder}'):
             if innerFolder == "migrations":
-                for file in os.listdir(f'{folder}\\{innerFolder}'):
+                for file in os.listdir(f'..\\{folder}\\{innerFolder}'):
                     if '__' not in file:
-                        os.remove(f'{folder}\\{innerFolder}\\{file}')
+                        print(f"Removing {file}")
+                        os.remove(f'..\\{folder}\\{innerFolder}\\{file}')

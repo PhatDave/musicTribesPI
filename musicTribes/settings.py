@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'customAuth',
     'tribes',
-    'customauth',
 ]
 
 MIDDLEWARE = [
@@ -146,4 +146,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "customauth.User"
+AUTH_USER_MODEL = "customAuth.User"

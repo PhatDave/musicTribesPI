@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db.models import *
 
+
 class User(AbstractUser):
     def joinTribe(self, tribe):
         tribe.addMember(self)
@@ -29,6 +30,7 @@ class User(AbstractUser):
         if len(membership) > 0:
             return True
         return False
+
 
 class UserTribeMember(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)

@@ -1,7 +1,7 @@
+from customAuth.models import User
 from django.test import TestCase
 
-from customauth.models import User
-from tribes.models import *
+from customAuth.models import UserTribeMember
 from tribes.utils import *
 
 
