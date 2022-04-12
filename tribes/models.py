@@ -43,6 +43,9 @@ class Tribe(Model):
             users.append(i.user)
         return users
 
+    def getPlaylists(self):
+        return Playlist.objects.filter(tribe=self).all()
+
     def createPlaylist(self, name, description):
         return Playlist.objects.create(tribe=self,
                                        user=self.chieftain,
@@ -71,6 +74,9 @@ class Playlist(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     name = CharField(max_length=128, default="")
     description = CharField(max_length=256, null=True, default="None")
+
+    def getSongs(self):
+        return Song.objects.filter(playlist=self).all()
 
 
 class Song(Model):
