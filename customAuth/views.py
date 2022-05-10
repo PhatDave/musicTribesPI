@@ -15,7 +15,7 @@ def loginView(request):
         auth = authenticate(username=request.POST['username'], password=request.POST['password'])
         if auth is not None:
             login(request, auth)
-        return HttpResponseRedirect(reverse('tribes:index'))
+        return HttpResponseRedirect(reverse('auth:login'))
 
 
 def logoutView(request):
@@ -27,9 +27,11 @@ def registerView(request):
     if request.method == 'GET':
         return render(request, 'customAuth/register.html')
     elif request.method == 'POST':
-        User.objects.create_user(
+        user = User.objects.create_user(
             username=request.POST['username'],
             email=request.POST['email'],
             password=request.POST['password']
         )
+        user.save()
+        login(request, user)
         return HttpResponseRedirect(reverse('tribes:index'))
