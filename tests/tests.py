@@ -37,7 +37,6 @@ class TribeTests(TestCase):
         UserLike.objects.create(user=cedo, song=song1)
         UserLike.objects.create(user=cedo, song=song2)
         UserLike.objects.create(user=cedo, song=song3)
-        UserLike.objects.create(user=ivan, song=song1)
 
         UserComment.objects.create(user=ivan, content="ivan says hi", song=song1)
         UserComment.objects.create(user=bosko, content="bosko says hi", song=song1)
@@ -94,4 +93,3 @@ class TribeTests(TestCase):
         boskoTribe = Tribe.objects.get(name="boskovTribe")
 
         self.assertEqual(ivan.getUserTribes(), [boskoTribe, mirkoTribe])
-
