@@ -10,5 +10,6 @@ def index(request):
 
     tribes = Tribe.objects.all()
     context['tribes'] = tribes
+    context['user'] = request.user
 
     return render(request, html, context)
