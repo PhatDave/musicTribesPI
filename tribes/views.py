@@ -8,7 +8,7 @@ def index(request):
     context = {}
     html = 'tribes/index.html'
 
-    tribe = Tribe.objects.all()[0]
-    print(tribe.getMembers())
+    tribes = Tribe.objects.all()
+    context['tribes'] = tribes
 
     return render(request, html, context)

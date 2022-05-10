@@ -1,1 +1,6 @@
 <h1> NASLOV </h1>
+
+{% for tribe in tribes %}
+	<h2> {{ tribe.name }} </h2>
+	<p> {{ tribe.genre }} </p>
+{% endfor %}
