@@ -18,20 +18,29 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{% url 'user:register' %}" class="nav-link">
                     <i class="fa-solid fa-user-plus"></i>&nbsp;Sign Up
                 </a>
             </li>
             {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-user"></i>&nbsp;Profile
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropDOwn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>&nbsp;{{ request.user.username }}
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'user:logout' %}">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout
-                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="userDropDOwn">
+                    <a href="#" class="dropdown-item">
+                        <i class="fa-solid fa-house-user"></i>&nbsp;Profile
+                    </a>
+                    <a href="{% url 'user:logout' %}" class="dropdown-item">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Log Out
+                    </a>
+                    {% if request.user.is_superuser %}
+                    <hr class="dropdown-divider">
+                    <a href="{% url 'admin:index' %}" target="_blank" class="dropdown-item">
+                        <i class="fa-solid fa-user-gear"></i>&nbsp;Django Panel
+                    </a>
+                    {% endif %}
+                </ul>
             </li>
             {% endif %}
         </ul>

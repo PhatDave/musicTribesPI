@@ -1,6 +1,6 @@
 {% extends 'tribes/base.html' %}
 {% load static %}
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 {% block css %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/user_auth.css' %}">
@@ -12,7 +12,7 @@
     <div class="container-fluid justify-content-center align-items-center w-100 h-100 d-flex">
         <div class="col-12 col-md-12 col-xl-6 mx-auto px-3 py-5 loginRegister">
             <h1 class="text-center my-5">
-                <i class="fa-solid fa-music"></i>&nbsp;Login&nbsp;<i class="fa-solid fa-music"></i>
+                <i class="fa-solid fa-music"></i>&nbsp;Register&nbsp;<i class="fa-solid fa-music"></i>
             </h1>
             <form method="post" class="col-12 col-lg-10 mx-auto my-3 row" id="loginForm">
                 {% csrf_token %}
@@ -25,12 +25,10 @@
                 </div>
                 {% endfor %}
                 <div class="col-6 mx-auto">
-                    <button type="submit" class="btn btn-outline-light my-3 px-5 py-3 w-100">Login</button>
+                    <button type="submit" class="btn btn-outline-light my-3 px-5 py-3 w-100">Register</button>
                 </div>
                 <div class="my-3">
-                    <a href="{% url 'user:register' %}" class="loginRegisterHelpers">Don't have an account? Sign up!</a>
-                    <br>
-                    <a href="#" class="loginRegisterHelpers">Forgot your password?</a>
+                    <a class="loginRegisterHelpers" href="{% url 'user:login' %}">Already have an account? Log in!</a>
                 </div>
                 <input type="submit" hidden />
                 <div class="col-md-12 text-start error">
