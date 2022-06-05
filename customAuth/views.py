@@ -39,9 +39,9 @@ def register_view(request):
 			login(request, user)
 			return redirect('tribes:index')
 	else:
-		form = RegistrationForm()		
+		form = RegistrationForm()
 	context = {
 		'form': form,
-		'navbar': 'register',
+		'nav': 'register',
 	}
 	return render(request, 'customAuth/register.html', context)
