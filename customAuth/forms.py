@@ -4,14 +4,28 @@ from .models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
-class RegistrationForm(UserCreationForm):	
+class RegistrationForm(UserCreationForm):
+	first_name = forms.CharField(
+		widget=forms.TextInput(attrs={
+			'name': 'first_name',
+			'class':'form-control px-4',
+			'placeholder':'First name',
+			'required': 'true',
+			}))
+	last_name = forms.CharField(
+		widget=forms.TextInput(attrs={
+			'name': 'last_name',
+			'class':'form-control px-4',
+			'placeholder':'Last name',
+			'required': 'true',
+			}))	
 	email = forms.EmailField(
 		widget=forms.EmailInput(attrs={
 			'name': 'email',
 			'class':'form-control px-4',
 			'placeholder':'Electronic mail',
-			'autofocus': 'true',
 			'required': 'true',
+			'autofocus':'true',
 			}))
 	username = forms.CharField(max_length=16,
 		widget=forms.TextInput(attrs={

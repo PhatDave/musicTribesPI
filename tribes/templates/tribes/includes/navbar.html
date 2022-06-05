@@ -11,7 +11,7 @@
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a href="#" class="nav-link {% if nav == 'tribes' %}active{% endif %}">
+                <a href="{% url 'tribes:tribes_index' %}" class="nav-link {% if nav == 'tribes' %}active{% endif %}">
                     <i class="fa-solid fa-tents"></i>&nbsp;Tribes
                 </a>
             </li>
