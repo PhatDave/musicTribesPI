@@ -1,0 +1,39 @@
+* {
+    font-family: Georgia, Times, Times New Roman, serif;
+    letter-spacing: 0.12em;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 139, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to top, #000428, #004e92);
+}
+
+.btn {
+    border-radius: 2rem;
+    transition: all .5s ease-in-out !important;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all .5s ease;
+}
+
+.navbar:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}

@@ -10,3 +10,51 @@ body#login {
     -moz-background-size: cover;
     -o-background-size: cover;
 }
+
+.loginRegister {
+    background-color: #000;
+    opacity: 70%;
+    color: #fff;
+    border-radius: 2rem;
+    transition: all .5s ease;
+}
+
+.loginRegister:hover {
+    opacity: 90%;
+}
+
+.form-outline>input, .form-outline>input:active, .form-outline>input:focus, .form-outline>input:read-only,
+.form-outline>textarea, .form-outline>textarea:active, .form-outline>textarea:focus {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #434a52;
+    border-radius: 2rem;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+}
+
+.error {
+    color: red;
+}
+
+.loginRegisterHelpers {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #fff;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: all .5s ease;
+}
+
+.loginRegisterHelpers:hover {
+    color: #fff;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.loginRegisterHelpers:active {
+    color: #6699CC;
+    opacity: 1;
+}

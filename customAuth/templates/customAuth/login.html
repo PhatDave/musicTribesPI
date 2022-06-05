@@ -1,0 +1,45 @@
+{% extends 'tribes/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/user_auth.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<body id="login" class="unselectable">
+    <div class="container-fluid justify-content-center align-items-center w-100 h-100 d-flex">
+        <div class="col-12 col-md-12 col-xl-6 mx-auto px-3 py-5 loginRegister">
+            <h1 class="text-center my-5">
+                <i class="fa-solid fa-music"></i>&nbsp;Login&nbsp;<i class="fa-solid fa-music"></i>
+            </h1>
+            <form method="post" class="col-12 col-lg-10 mx-auto my-3 row" id="loginForm">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-outline mb-4 col-md-12">
+                    {{ field }}
+                    {% for error in field.errors %}
+                    <p class="my-2 error">{{error}}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <div class="col-6 mx-auto">
+                    <button type="submit" class="btn btn-outline-light my-3 px-5 py-3 w-100">Login</button>
+                </div>
+                <div class="my-3">
+                    <a href="#" class="loginRegisterHelpers">Don't have an account? Sign up!</a>
+                    <br>
+                    <a href="#" class="loginRegisterHelpers">Forgot your password?</a>
+                </div>
+                <input type="submit" hidden />
+                <div class="col-md-12 text-start error">
+                    {% if form.non_field_errors %}
+                    <p class="my-2 text-center">{{ form.non_field_errors }}</p>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock content %}

@@ -32,4 +32,4 @@ def login_view(request):
 
 def logout_view(request):
 	logout(request)
-	return redirect('tribes:index') 
+	return redirect('tribes:index')
