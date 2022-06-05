@@ -1,0 +1,12 @@
+body#login {
+    background: #475d62 url('../assets/loginBg.jpg') no-repeat center center fixed;
+}
+
+body#login {
+    background-size: cover;
+    text-align: center;
+    height: 100vh !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}

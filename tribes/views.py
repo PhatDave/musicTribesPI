@@ -1,7 +1,5 @@
 from django.shortcuts import render
-
-from customAuth.models import User
-from tribes.models import *
+from tribes.models import Tribe
 
 
 def index_view(request):

@@ -1,7 +1,22 @@
-.idea
-venv
-env
-__pycache__
+# Editors
+*/__pycache__/*
+__pycache__/*
+/.idea/*
+.vscode/
+
+# Virtual Environment
+/env/
+/venv/
+
+# Migrations
+/*/migrations/*
+!/*/migrations/__init__.py
+
+# Static, Media and DB
+/media_cdn/
+/static_cdn/
+*.sqlite3
+
+# Testing files, additional data
+*.txt
 environmentConfig.py
-static_cdn
-media_cdn
