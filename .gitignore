@@ -3,5 +3,5 @@ venv
 env
 __pycache__
 environmentConfig.py
-static
-media
+static_cdn
+media_cdn

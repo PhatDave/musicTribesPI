@@ -14,7 +14,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if not request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link {% if nav == 'login' %}active{% endif %}" href="{% url 'user:login' %}">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;Login
                     </a>
                 </li>
@@ -24,6 +24,16 @@
                     </a>
                 </li>
                 {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-user"></i>&nbsp;Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user:logout' %}">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout
+                    </a>
+                </li>
                 {% endif %}
             </ul>
         </div>

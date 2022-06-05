@@ -1,8 +1,11 @@
-from django.urls import path, include
+from django.urls import path
 
-from tribes.views import *
+from tribes.views import (
+    index_view,
+)
 
 app_name = 'tribes'
+
 urlpatterns = [
-    path('', index, name='index'),
+    path('', index_view, name='index'),
 ]
