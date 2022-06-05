@@ -17,11 +17,11 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 139, 0.3);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to top, #000428, #004e92);
+    background: linear-gradient(to top, #232526, #414345);
 }
 
 .btn {
@@ -36,4 +36,19 @@
 
 .navbar:hover {
     background-color: rgba(0, 0, 0, 0.9);
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all .5s ease;
+}
+
+.footer:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    border-radius: 2rem !important;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
 }

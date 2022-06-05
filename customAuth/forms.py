@@ -7,7 +7,7 @@ class LoginForm(forms.ModelForm):
 	username = forms.CharField(
 		widget=forms.TextInput(attrs={
 			'name': 'email',
-			'class':'form-control form-control',
+			'class':'form-control form-control px-4',
 			'placeholder':'Username',
 			'autofocus':'true',
 			'required': 'true',
@@ -15,7 +15,7 @@ class LoginForm(forms.ModelForm):
 	password = forms.CharField(
 		widget=forms.PasswordInput(attrs={
 			'name': 'password1',
-			'class':'form-control form-control',
+			'class':'form-control form-control px-4',
 			'placeholder':'Password',
 			'required': 'true',
 			}))
