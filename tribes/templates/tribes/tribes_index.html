@@ -1,0 +1,140 @@
+{% extends 'tribes/base.html' %}
+{% load static %}
+{% block title %}Tribes{% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/tribes.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<body id="tribes" class="unselectable">
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "{% url 'tribes:tribes_index' %}",
+                type: "POST",
+                data: {
+                    'value': $("#sortBy option:selected").val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                cache: false,
+                dataType: "json",
+                success: function (data) {
+                    var num_of_posts = data[data.length - 2];
+                    var post = jQuery.parseJSON(data);
+                    if (num_of_posts == 0) {
+                        $("#allTribes").html(
+                            "<div class=\"col-md-12 my-3 p-3\">" +
+                            "<h3>There is currently no published posts...</h3>" +
+                            "</div>");
+                    } else {
+                        for (i = 0; i < num_of_posts; i++) {
+                            $("#allTribes").append(
+                                "<div class='col-3 mx-auto my-3'>" +
+                                "<div class='card'>" +
+                                "<div class='row g-0'>" +
+                                "<div class='col-md-4'>" +
+                                "<img src='" + post[i]["logo"] + "' class='img-fluid rounded-start' alt=''>" +
+                                "</div>" +
+                                "<div class='col-md-8'>" +
+                                "<div class='card-body'>" +
+                                "<h5 class='card-title'>" + post[i]["name"] + "</h5>" +
+                                "<p class='card-text'>" + post[i]['genre'] + "</p>" +
+                                "<p class='card-text'>Members: [" + post[i]['members'] + "]</p>" +
+                                "<p class='card-text'><small class='text-muted'>Posted by " + post[i]['chieftain'] + " on " + post[i]['created_at'] + "</small></p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>"
+                            );
+                        }
+                    }
+                },
+                fail: function () { },
+                error: function (data) {
+                    console.log("ERROR");
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-12 mx-auto">
+                <div class="row align-items-center">
+                    <div class="col-9">
+                        <h1 class="text-white">Tribes</h1>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="sortBy" style="border-top-left-radius: 2rem; border-bottom-left-radius: 2rem;">Sort by:</label>
+                            <select name="sortby" class="form-select" id="sortBy" style="border-top-right-radius: 2rem; border-bottom-right-radius: 2rem;">
+                                <option class="sbopt" value="1" selected>Default</option>
+                                <option class="sbopt" value="2">Name ascending</option>
+                                <option class="sbopt" value="3">Name descending</option>
+                                <option class="sbopt" value="4">Most users</option>
+                                <option class="sbopt" value="5">Least users</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $("#sortBy").on("change", function () {
+                        $.ajax({
+                            url: "{% url 'tribes:tribes_index' %}",
+                            type: "POST",
+                            data: {
+                                'value': $("#sortBy option:selected").val(),
+                                csrfmiddlewaretoken: '{{ csrf_token }}',
+                            },
+                            cache: false,
+                            dataType: "json",
+                            success: function (data) {
+                                var num_of_posts = data[data.length - 2];
+                                var post = jQuery.parseJSON(data);
+                                if (num_of_posts == 0) {
+                                    $("#allTribes").html(
+                                        "<div class=\"col-md-12 my-3 p-3\">" +
+                                        "<h3>There is currently no Tribes.</h3>" +
+                                        "</div>");
+                                } else {
+                                    $("#allTribes").html("");
+                                    for (i = 0; i < num_of_posts; i++) {
+                                        $("#allTribes").append(
+                                            "<div class='col-3 mx-auto my-3'>" +
+                                            "<div class='card'>" +
+                                            "<div class='row g-0'>" +
+                                            "<div class='col-md-4'>" +
+                                            "<img src='" + post[i]["logo"] + "' class='img-fluid rounded-start' alt=''>" +
+                                            "</div>" +
+                                            "<div class='col-md-8'>" +
+                                            "<div class='card-body'>" +
+                                            "<h5 class='card-title'>" + post[i]["name"] + "</h5>" +
+                                            "<p class='card-text'>" + post[i]['genre'] + "</p>" +
+                                            "<p class='card-text'>Members: [" + post[i]['members'] + "]</p>" +
+                                            "<p class='card-text'><small class='text-muted'>Posted by " + post[i]['chieftain'] + " on " + post[i]['created_at'] + "</small></p>" +
+                                            "</div>" +
+                                            "</div>" +
+                                            "</div>" +
+                                            "</div>" +
+                                            "</div>"
+                                        )
+                                    }
+                                }
+                            },
+                            fail: function () { },
+                            error: function (data) {
+                                console.log("ERROR FROM SELECT");
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="row" id="allTribes" style="background-color: #aaa;"></div>
+    </div>
+</body>
+{% endblock content %}

@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark {% if nav == 'login' or nav == 'register' %}fiexd{% else %}sticky{% endif %}-top">
             {% include 'tribes/includes/navbar.html' %}
         </nav>
     </header>
@@ -27,7 +27,9 @@
         {% endblock %}
     </main>
 
-    <footer class="footer text-center text-lg-start sticky-bottom">
+    {% block footer %}
+    <footer class="footer text-center text-lg-start {% if nav == 'login' or nav == 'register' %}sticky{% else %}fixed{% endif %}-bottom">
         {% include 'tribes/includes/footer.html' %}
     </footer>
+    {% endblock %}
 </body>
