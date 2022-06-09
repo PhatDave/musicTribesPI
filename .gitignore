@@ -9,8 +9,9 @@ __pycache__/*
 /venv/
 
 # Migrations
-/*/migrations/*
-!/*/migrations/__init__.py
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
 
 # Static, Media and DB
 /media_cdn/
