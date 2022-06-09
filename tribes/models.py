@@ -43,14 +43,23 @@ class Tribe(Model):
 
 	def serializeTribe(self):
 		return {
+			'id': self.id,
 			'name': self.name,
 			'logo': str(self.logo),
 			'created_at': str(self.created_at.strftime("%d.%m.%Y, %H:%M")),
 			'chieftain_id': self.chieftain.id,
 			'chieftain': self.chieftain.username,
 			'genre': self.genre,
-			'members': self.getNumberOfMembers(),
+			'numOfMembers': self.getNumberOfMembers(),
+			'members': self.getSerializedMembers(),
 		}
+
+	def getSerializedMembers(self):
+		relation = UserTribeMember.objects.filter(tribe=self).all()
+		users = []
+		for i in relation:
+			users.append(i.user.serialize())
+		return users
 
 	def getMembers(self):
 		relation = UserTribeMember.objects.filter(tribe=self).all()
@@ -73,6 +82,11 @@ class Tribe(Model):
 		if len(membership) > 0:
 			raise self.UserIsAlreadyAMemberException(user, self)
 		UserTribeMember.objects.create(tribe=self, user=user)
+	
+	def removeMember(self, user):
+		membership = UserTribeMember.objects.filter(tribe=self, user=user)
+		if membership:
+			membership.delete()
 
 	def __str__(self):
 		return self.name

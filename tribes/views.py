@@ -1,10 +1,11 @@
 import json
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Tribe
 from customAuth.models import User
 from .helpers import is_ajax
 from .sorting_strategies import *
+from django.http import HttpResponse
 
 
 def index_view(request):
@@ -46,3 +47,18 @@ def tribes_index_view(request):
 			'nav': 'tribes',
 		}
 		return render(request, 'tribes/tribes_index.html', context)
+
+
+def tribe_membership_view(request):
+	if request.method == "POST" and is_ajax(request):
+		tribe_id = request.POST.get('id', None)
+		user = User.objects.get(id=request.user.id)
+		tribe = Tribe.objects.get(id=tribe_id)
+		if user.isInTribe(tribe):
+			tribe.removeMember(user)
+		else:
+			tribe.addMember(user)
+		tribe.save()
+		return HttpResponse(json.dumps({ "good": True }), content_type="application/json")
+	else:
+		return redirect('main:index')

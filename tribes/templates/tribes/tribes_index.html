@@ -21,49 +21,66 @@
                 cache: false,
                 dataType: "json",
                 success: function (data) {
-                    var num_of_posts = data[data.length - 2];
-                    var post = jQuery.parseJSON(data);
-                    if (num_of_posts == 0) {
+                    let isInUsers;
+                    var user = "{{ request.user }}";
+                    var tribe = jQuery.parseJSON(data);
+                    var num_of_tribes = data[data.length - 2];
+                    if (num_of_tribes == 0) {
                         $("#allTribes").html(
                             "<div class=\"col-md-12 my-3 p-3\">" +
-                            "<h3>There is currently no published posts...</h3>" +
+                            "<h3>There is currently no published tribes...</h3>" +
                             "</div>");
                     } else {
-                        for (i = 0; i < num_of_posts; i++) {
+                        for (i = 0; i < num_of_tribes; i++) {
+                            for (j = 0; j < tribe[i]["numOfMembers"]; j++) if (user == tribe[i]["members"][j]["username"]) isInUsers = true;
                             $("#allTribes").append(
                                 "<div class='col-2 mx-auto my-3'>" +
                                 "<div class='card text-white'>" +
                                 "<div class='row g-0'>" +
                                 "<div class='card-header'>" +
-                                "<img src='" + post[i]["logo"] + "' class='my-3 img-fluid card-image' alt=''>" +
-                                "<h4 class='card-title mt-3'>" + post[i]["name"] + "</h4>" +
-                                "<p class='text-small mb-3 text-white-50'>by: <a href='' class='card-link'>" + post[i]["chieftain"] + "</a></p>" +
+                                "<img src='" + tribe[i]["logo"] + "' class='my-3 img-fluid card-image' alt=''>" +
+                                "<h4 class='card-title'>" + tribe[i]["name"] + "</h4>" +
+                                "<a href='' class='btn btn-outline-light mb-3'><i class='fa-solid fa-crown'></i>&nbsp;" + tribe[i]["chieftain"] + "</a>" +
                                 "</div>" +
                                 "<div class='card-body'>" +
-                                "<div class='row'>" +
-                                "<div class='col-6 text-center'>" +
-                                "<p class='small'><i class='fa-solid fa-users'></i>&nbsp;" + post[i]["members"] + "</p>" +
+                                "<div class='row mb-2'>" +
+                                "<div class='col-4 mb-3 text-center'>" +
+                                "<i class='fa-solid fa-users'></i>&nbsp;" + tribe[i]["numOfMembers"] +
                                 "</div>" +
-                                "<div class='col-6 text-center'>" +
-                                "<i class='fa-solid fa-drum'></i>&nbsp;" + post[i]["genre"] +
+                                "<div class='col-8 mb-3 text-center'>" +
+                                "<i class='fa-solid fa-drum'></i>&nbsp;" + tribe[i]["genre"] +
                                 "</div>" +
-                                "</div>" +
-                                "<div class='row'>" +
-                                "<div class='col-6 text-center'>" +
-                                "<a href='' class='btn btn-outline-light w-100'><i class='fa-solid fa-crown'></i>&nbsp;" + post[i]["chieftain"] + "</a>" +
-                                "</div>" +
-                                "<div class='col-6 text-center'>" +
-                                "<a href='' class='btn btn-outline-light w-100'><i class='fa-solid fa-door-open'></i>&nbsp;Join</a>" +
+                                "<div class='col-12 text-center'>" +
+                                "<a href='' id='" + tribe[i]["id"] + "' class='btn btn-outline-light w-75'></a>" +
                                 "</div>" +
                                 "</div>" +
                                 "</div>" +
                                 "<div class='card-footer mx-auto'>" +
-                                "<i class='fa-solid fa-calendar-days'></i>&nbsp;" + post[i]["created_at"] +
+                                "<i class='fa-solid fa-calendar-days'></i>&nbsp;" + tribe[i]["created_at"] +
                                 "</div>" +
                                 "</div>" +
                                 "</div>" +
                                 "</div>"
                             );
+                            $("#" + tribe[i]["id"]).html(isInUsers ? "<i class='fa-solid fa-door-open'></i>&nbsp;Leave" : "<i class='fa-solid fa-door-closed'></i>&nbsp;Join");
+
+                            $("#" + tribe[i]["id"]).click(function () {
+                                $.ajax({
+                                    url: "{% url 'tribes:tribe_membership' %}",
+                                    type: "POST",
+                                    data: {
+                                        "id": $(this).attr("id"),
+                                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                                    },
+                                    cache: false,
+                                    dataType: "json",
+                                    success: function (e) {
+                                        isInUsers = !isInUsers;
+                                        if (isInUsers) $(this).html("<i class='fa-solid fa-door-open'></i>&nbsp;Leave");
+                                        else $(this).html("<i class='fa-solid fa-door-closed'></i>&nbsp;Join");
+                                    }
+                                });
+                            });
                         }
                     }
                 },
@@ -153,5 +170,6 @@
 
         <div class="row" id="allTribes"></div>
     </div>
+    {% block footer %}{% endblock %}
 </body>
 {% endblock content %}
