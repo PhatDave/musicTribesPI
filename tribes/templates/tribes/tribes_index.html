@@ -31,19 +31,34 @@
                     } else {
                         for (i = 0; i < num_of_posts; i++) {
                             $("#allTribes").append(
-                                "<div class='col-3 mx-auto my-3'>" +
-                                "<div class='card'>" +
+                                "<div class='col-2 mx-auto my-3'>" +
+                                "<div class='card text-white'>" +
                                 "<div class='row g-0'>" +
-                                "<div class='col-md-4'>" +
-                                "<img src='" + post[i]["logo"] + "' class='img-fluid rounded-start' alt=''>" +
+                                "<div class='card-header'>" +
+                                "<img src='" + post[i]["logo"] + "' class='my-3 img-fluid card-image' alt=''>" +
+                                "<h4 class='card-title mt-3'>" + post[i]["name"] + "</h4>" +
+                                "<p class='text-small mb-3 text-white-50'>by: <a href='' class='card-link'>" + post[i]["chieftain"] + "</a></p>" +
                                 "</div>" +
-                                "<div class='col-md-8'>" +
                                 "<div class='card-body'>" +
-                                "<h5 class='card-title'>" + post[i]["name"] + "</h5>" +
-                                "<p class='card-text'>" + post[i]['genre'] + "</p>" +
-                                "<p class='card-text'>Members: [" + post[i]['members'] + "]</p>" +
-                                "<p class='card-text'><small class='text-muted'>Posted by " + post[i]['chieftain'] + " on " + post[i]['created_at'] + "</small></p>" +
+                                "<div class='row'>" +
+                                "<div class='col-6 text-center'>" +
+                                "<p class='small'><i class='fa-solid fa-users'></i>&nbsp;" + post[i]["members"] + "</p>" +
                                 "</div>" +
+                                "<div class='col-6 text-center'>" +
+                                "<i class='fa-solid fa-drum'></i>&nbsp;" + post[i]["genre"] +
+                                "</div>" +
+                                "</div>" +
+                                "<div class='row'>" +
+                                "<div class='col-6 text-center'>" +
+                                "<a href='' class='btn btn-outline-light w-100'><i class='fa-solid fa-crown'></i>&nbsp;" + post[i]["chieftain"] + "</a>" +
+                                "</div>" +
+                                "<div class='col-6 text-center'>" +
+                                "<a href='' class='btn btn-outline-light w-100'><i class='fa-solid fa-door-open'></i>&nbsp;Join</a>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "<div class='card-footer mx-auto'>" +
+                                "<i class='fa-solid fa-calendar-days'></i>&nbsp;" + post[i]["created_at"] +
                                 "</div>" +
                                 "</div>" +
                                 "</div>" +
@@ -107,14 +122,16 @@
                                             "<div class='card'>" +
                                             "<div class='row g-0'>" +
                                             "<div class='col-md-4'>" +
-                                            "<img src='" + post[i]["logo"] + "' class='img-fluid rounded-start' alt=''>" +
+                                            "<img src='" + post[i]["logo"] + "' class='img-fluid card-image rounded-start' alt=''>" +
                                             "</div>" +
                                             "<div class='col-md-8'>" +
                                             "<div class='card-body'>" +
                                             "<h5 class='card-title'>" + post[i]["name"] + "</h5>" +
-                                            "<p class='card-text'>" + post[i]['genre'] + "</p>" +
-                                            "<p class='card-text'>Members: [" + post[i]['members'] + "]</p>" +
-                                            "<p class='card-text'><small class='text-muted'>Posted by " + post[i]['chieftain'] + " on " + post[i]['created_at'] + "</small></p>" +
+                                            "<p class='small'>Chieftain: " + post[i]["chieftain"] + "</p>" +
+                                            "<hr>" +
+                                            "<p class='card-text small'>" + post[i]['genre'] + "</p>" +
+                                            "<p class='card-text small'>Members: [" + post[i]['members'] + "]</p>" +
+                                            "<p class='card-text'><small class='text-muted'>Created: " + post[i]['created_at'] + "</small></p>" +
                                             "</div>" +
                                             "</div>" +
                                             "</div>" +
@@ -134,7 +151,7 @@
             </div>
         </div>
 
-        <div class="row" id="allTribes" style="background-color: #aaa;"></div>
+        <div class="row" id="allTribes"></div>
     </div>
 </body>
 {% endblock content %}

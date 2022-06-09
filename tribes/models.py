@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db.models import *
 from django.utils.timezone import now
-
 from customAuth.models import UserTribeMember
 
 
@@ -12,7 +11,8 @@ class Tribe(Model):
 	# TODO: see https://wsofter.com/upload-download-file-to-from-server-in-django-via-ajax/
 	# file = request.FILES.get('file')
 	# File.objects.create(file=file)
-	logo = FileField(upload_to='', null=True, blank=True) # null=True != blank=True
+	# logo = FileField(upload_to='', null=True, blank=True) # null=True != blank=True
+	logo = URLField(default='http://178.128.141.50:8081/files/default.jpg', null=True, blank=True, max_length=300)
 	genre = CharField(max_length=32, null=True, default="None")
 	created_at = DateTimeField(verbose_name='Creation date', default=now) # TODO: Make better
 
